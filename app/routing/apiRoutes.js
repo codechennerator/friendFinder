@@ -8,7 +8,8 @@ module.exports = function(app) {
     res.json(friendsData);
   });
 
-  app.post("/api/tables", function(req, res) {
+  app.post("/api/friends", function(req, res) {
+      console.log(req.body);
       friendsData.push(req.body);
       res.json(friendsData);
     // else {
