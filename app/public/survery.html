@@ -160,7 +160,7 @@
             </div>
             <div class="modal-body">
               <h2 id="match-name"></h2>
-              <img id="match-img" src="" alt="">
+              <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="" style = "height: 400px; width:400px">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -197,24 +197,25 @@
 
           if(validateForm()){
             
-            let userData = {
-              "name": document.getElementById("name").value,
-              "photo": document.getElementById("photo").value,
-              "scores": [
-                (document.getElementById("q1").value),
-                (document.getElementById("q2").value),
-                (document.getElementById("q3").value),
-                (document.getElementById("q4").value),
-                (document.getElementById("q5").value),
-                (document.getElementById("q6").value),
-                (document.getElementById("q7").value),
-                (document.getElementById("q8").value),
-                (document.getElementById("q9").value),
-                (document.getElementById("q10").value),
-              ]
-            }
+            var userData = {
+                "name": document.getElementById("name").value,
+                "photo": document.getElementById("photo").value,
+                "scores": [
+                  (document.getElementById("q1").value),
+                  (document.getElementById("q2").value),
+                  (document.getElementById("q3").value),
+                  (document.getElementById("q4").value),
+                  (document.getElementById("q5").value),
+                  (document.getElementById("q6").value),
+                  (document.getElementById("q7").value),
+                  (document.getElementById("q8").value),
+                  (document.getElementById("q9").value),
+                  (document.getElementById("q10").value),
+                ]
+              }
+            console.log(userData);
 
-            $.post("/api/friends", userData, function(data) {
+            // $.post("/api/friends", userData, function(data) {
       
                 // Grab the result from the AJAX post so that the best match's name and photo are displayed.
                 // $("#match-name").text(data.name);
@@ -223,15 +224,25 @@
                 // Show the modal with the best match
                 // $("#results-modal").modal("toggle");
 
-            });
+            // }, "json");
 
-            // var xhr = new XMLHttpRequest();
-            // xhr.open("POST", "/api/friends", true);
-            // xhr.setRequestHeader('Content-Type', 'application/json');
-            // xhr.onload = (e) =>{
-            //   console.log(e);
-            // }
-            // xhr.send(JSON.stringify(userData));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/api/friends", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = (data) =>{
+              let received = JSON.parse(data.currentTarget.response);
+              let matchName = document.getElementById("match-name");
+              let matchImg = document.getElementById("match-img");
+              let results = document.getElementById("results-modal");
+
+              
+              
+              matchName.innerHTML = received.name;
+              matchImg.setAttribute("src", received.photo);
+
+              $("#results-modal").modal("toggle");
+            }
+            xhr.send(JSON.stringify(userData));
           }
         }
       });

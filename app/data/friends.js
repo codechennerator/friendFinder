@@ -1,7 +1,7 @@
 let friendsData = [
     {
         "name":"Ahmed",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://i0.kym-cdn.com/photos/images/original/000/581/296/c09.jpg",
         "scores":[
             "5",
             "1",
