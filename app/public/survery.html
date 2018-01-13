@@ -173,7 +173,7 @@
       <hr>
       <footer class="footer">
         <div class="container">
-          <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+          <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/codechennerator/friendFinder">GitHub Repo</a></p>
         </div>
       </footer>
     </div>
@@ -215,17 +215,6 @@
               }
             console.log(userData);
 
-            // $.post("/api/friends", userData, function(data) {
-      
-                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                // $("#match-name").text(data.name);
-                // $("#match-img").attr("src", data.photo);
-
-                // Show the modal with the best match
-                // $("#results-modal").modal("toggle");
-
-            // }, "json");
-
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/api/friends", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -234,9 +223,7 @@
               let matchName = document.getElementById("match-name");
               let matchImg = document.getElementById("match-img");
               let results = document.getElementById("results-modal");
-
-              
-              
+             
               matchName.innerHTML = received.name;
               matchImg.setAttribute("src", received.photo);
 
